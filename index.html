@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARM Guinchos | Guincho em Porto Alegre, Zona Sul</title>
+<meta name="description" content="Carro parou? Chama o André. Guincho em Porto Alegre, todos os dias das 8h às 20h, direto no WhatsApp, com nota 4,9 no Google.">
+<meta name="theme-color" content="#FFD100">
+<!--
+  PROTÓTIPO DE PROPOSTA: site demonstrativo feito com dados públicos da ficha do Google Maps do ARM Guinchos.
+  Não publicar como site oficial sem a autorização do responsável.
+  Dados da ficha (conferidos em 29/10/2026): R. Cirino Prunes, 202, Espírito Santo, Porto Alegre-RS,
+  (51) 99837-0221, aberto todos os dias das 8h às 20h, nota 4,9 com 94 avaliações. Cores (amarelo, preto e branco)
+  e o nome "André" tirados da foto de capa e das avaliações. Confirmar com o cliente.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "ARM Guinchos",
+  "description": "Serviço de guincho e reboque em Porto Alegre, Zona Sul.",
+  "telephone": "+55-51-99837-0221",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "R. Cirino Prunes, 202 - Espírito Santo",
+    "addressLocality": "Porto Alegre",
+    "addressRegion": "RS",
+    "postalCode": "91770-210",
+    "addressCountry": "BR"
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    "opens": "08:00",
+    "closes": "20:00"
+  },
+  "areaServed": "Porto Alegre"
+}
+</script>
+<style>
+:root{
+  --black:#0E0E0E;
+  --black-2:#1B1B1B;
+  --yellow:#FFD100;
+  --paper:#F6F3EA;       /* branco quente, nunca #fff puro */
+  --paper-2:#ECE8DB;
+  --ink:#16140C;
+  --muted-dark:#5E5A4B;
+  --muted-light:#B9B6A8;
+  --wa:#25D366;          /* cor funcional do botão de WhatsApp */
+  --r:10px;
+  --display:'Archivo Black','Arial Black',sans-serif;
+  --body:'Archivo',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--paper);color:var(--ink);line-height:1.55;font-size:17px;-webkit-font-smoothing:antialiased;padding-bottom:84px}
+svg{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1120px,100% - 40px);margin-inline:auto}
+h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.5px;line-height:1.02}
+h1{font-size:clamp(40px,9vw,92px)}
+h2{font-size:clamp(30px,5.4vw,52px);margin-bottom:14px}
+h3{font-size:21px;letter-spacing:-.2px}
+section{padding:72px 0}
+.kicker{display:inline-block;font-weight:800;font-size:13px;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;border-bottom:4px solid var(--yellow);padding-bottom:3px}
+
+/* Topbar */
+.topbar{background:var(--black);color:var(--paper);font-size:14px;font-weight:600}
+.topbar .wrap{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:9px 0}
+.topbar b{color:var(--yellow)}
+.status{display:inline-flex;align-items:center;gap:8px;font-weight:700}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--wa);animation:blink 1.4s infinite;flex:none}
+.status.closed .dot{background:#FF5A4D;animation:none}
+@keyframes blink{50%{opacity:.25}}
+
+/* Header */
+header{position:sticky;top:0;z-index:60;background:rgba(246,243,234,.95);backdrop-filter:blur(8px);border-bottom:3px solid var(--black);transition:box-shadow .25s}
+header.scrolled{box-shadow:0 8px 0 rgba(14,14,14,.08)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:62px}
+.logo{display:flex;align-items:center;gap:8px;font-family:var(--display);font-size:22px;letter-spacing:-.3px}
+.logo b{background:var(--black);color:var(--yellow);padding:3px 9px;font-weight:400;border-radius:6px}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--body);font-weight:800;font-size:18px;border-radius:var(--r);padding:17px 26px;border:0;cursor:pointer;transition:transform .18s,box-shadow .18s,background .18s;text-align:center}
+.btn:hover{transform:translateY(-2px)}
+.btn svg{width:24px;height:24px;flex:none}
+.btn-wa{background:var(--wa);color:#05210E;box-shadow:0 8px 0 #12853E}
+.btn-wa:hover{background:#38E27B;box-shadow:0 10px 0 #12853E}
+.btn-wa:active{transform:translateY(4px);box-shadow:0 3px 0 #12853E}
+.btn-dark{background:var(--black);color:var(--paper);box-shadow:0 8px 0 #000}
+.btn-dark:hover{background:#262626}
+.btn-sm{padding:10px 16px;font-size:15px;box-shadow:0 4px 0 #12853E;white-space:nowrap;width:auto;flex:0 0 auto}
+@media(max-width:480px){#hdr .btn-sm{padding:7px 11px;font-size:12px;line-height:1.1;border-radius:10px;box-shadow:0 3px 0 #12853E;min-height:0;height:auto;width:auto;max-width:none;white-space:nowrap}#hdr .logo{font-size:15px;white-space:nowrap}#hdr .nav{gap:8px}}
+.btn-big{font-size:21px;padding:20px 30px}
+.pulse{animation:pulse 2.2s infinite}
+@keyframes pulse{0%{outline:0 solid rgba(37,211,102,.55)}70%{outline:16px solid rgba(37,211,102,0)}100%{outline:0 solid rgba(37,211,102,0)}}
+
+/* Hero */
+.hero{padding:44px 0 0;overflow:hidden}
+.hero h1{line-height:1.16}
+.hero h1 .l1{position:relative;z-index:1;display:inline-block}
+.hero h1 em{font-style:normal;position:relative;padding:0 .12em;background:linear-gradient(transparent 20%,var(--yellow) 20%,var(--yellow) 90%,transparent 90%);box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.lead{font-size:clamp(18px,2.4vw,22px);color:var(--muted-dark);margin:26px 0 28px;max-width:38ch;font-weight:500}
+.cta-stack{display:flex;flex-direction:column;gap:16px;max-width:460px}
+.micro{font-size:14px;color:var(--muted-dark);margin-top:16px;font-weight:600}
+.road{position:relative;margin-top:34px}
+.road svg{width:min(640px,100%);margin-left:auto;position:relative;z-index:1}
+.asphalt{height:34px;background:var(--black);position:relative;margin-top:-6px}
+.asphalt::after{content:"";position:absolute;left:0;right:0;top:15px;height:5px;background:repeating-linear-gradient(90deg,var(--yellow) 0 38px,transparent 38px 66px);background-size:66px 5px;animation:roll 1s linear infinite}
+@keyframes roll{to{background-position:-66px 0}}
+.truck{animation:drive 1.4s cubic-bezier(.2,.8,.2,1) both,bob 3s ease-in-out 1.4s infinite}
+@keyframes drive{from{transform:translateX(-140%)}to{transform:none}}
+@keyframes bob{50%{transform:translateY(-3px)}}
+
+/* Reviews (yellow) */
+.reviews-sec{background:var(--yellow)}
+.rating-big{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:8px}
+.rating-big .n{font-family:var(--display);font-size:78px;line-height:1;color:var(--yellow);background:var(--black);padding:2px 14px;border-radius:8px}
+.rating-big .stars{color:var(--black);font-size:26px;letter-spacing:3px}
+.rating-big small{display:block;color:#3C3200;font-weight:700}
+.reviews{display:grid;gap:16px;margin-top:26px}
+.review{background:var(--paper);color:var(--ink);border-radius:var(--r);padding:24px;box-shadow:7px 7px 0 var(--black)}
+.review .stars{color:#C99700;letter-spacing:3px;font-size:20px}
+.review p{margin:8px 0 12px;font-weight:600}
+.review small{color:var(--muted-dark);font-weight:700}
+
+/* Why (black) */
+.why{background:var(--black);color:var(--paper)}
+.why-grid{display:grid;gap:34px}
+.bignums{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.bn{border:2px solid #2E2E2E;border-radius:var(--r);padding:18px}
+.bn strong{display:block;font-family:var(--display);font-size:clamp(28px,5vw,44px);color:var(--yellow);line-height:1}
+.bn span{font-size:14px;color:var(--muted-light);font-weight:600}
+.why ul{list-style:none;display:grid;gap:16px}
+.why li{display:flex;gap:14px;align-items:flex-start;font-size:19px;font-weight:700}
+.why li i{flex:none;width:30px;height:30px;background:var(--yellow);color:var(--ink);display:grid;place-items:center;font-style:normal;font-weight:800;border-radius:6px}
+.why li span{display:block;color:var(--muted-light);font-weight:500;font-size:15px}
+
+/* Timeline */
+.tl{position:relative;margin-top:30px;max-width:640px;padding-left:34px}
+.tl::before{content:"";position:absolute;left:11px;top:6px;bottom:6px;width:4px;background:var(--black);border-radius:2px}
+.tl-item{position:relative;padding-bottom:28px}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{content:"";position:absolute;left:-34px;top:2px;width:26px;height:26px;border-radius:50%;background:var(--yellow);border:4px solid var(--black)}
+.tl-item p{color:var(--muted-dark);font-weight:500}
+
+/* Pills + FAQ */
+.alt{background:var(--paper-2)}
+.pills{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 8px}
+.pill{background:var(--black);color:var(--paper);font-weight:700;padding:11px 18px;border-radius:999px;font-size:16px}
+.pill:nth-child(odd){background:var(--yellow);color:var(--ink)}
+.faq details{background:var(--paper);border:3px solid var(--black);border-radius:10px;padding:16px 20px;margin-top:12px}
+.faq summary{cursor:pointer;font-weight:800;font-size:18px;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::after{content:"+";font-size:26px;line-height:1}
+.faq details[open] summary::after{content:"–"}
+.faq details p{margin-top:10px;color:var(--muted-dark)}
+
+/* Final */
+.final{background:var(--black);color:var(--paper);text-align:center;border-top:12px solid var(--yellow)}
+.final h2{font-size:clamp(38px,8vw,78px);color:var(--yellow)}
+.final p.big{font-size:20px;font-weight:600;margin:6px auto 28px;max-width:36ch;color:var(--paper)}
+.final .cta-stack{margin-inline:auto;align-items:stretch}
+.final .micro{color:var(--muted-light)}
+.final .micro b{color:var(--paper)}
+
+/* Footer */
+footer{background:var(--yellow);color:var(--ink);padding:38px 0 28px;font-size:15px;font-weight:500}
+.foot{display:grid;gap:22px}
+footer h4{font-family:var(--display);font-size:20px;font-weight:400;margin-bottom:6px}
+footer a{font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.copy{border-top:2px solid rgba(14,14,14,.25);margin-top:22px;padding-top:16px;font-size:13px}
+
+/* Mobile bar + float */
+.mbar{position:fixed;inset:auto 0 0 0;z-index:90;display:flex;gap:10px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:var(--black);border-top:3px solid var(--yellow)}
+.mbar .btn{padding:14px 12px;font-size:18px;box-shadow:none}
+.mbar .btn-wa{flex:1}
+.mbar .call{flex:0 0 auto;background:var(--paper);color:var(--ink);padding-inline:18px}
+.float{display:none}
+
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+.hero .fade{animation:fadeUp .8s ease both}
+.hero .fade:nth-child(2){animation-delay:.08s}.hero .fade:nth-child(3){animation-delay:.16s}.hero .fade:nth-child(4){animation-delay:.24s}.hero .fade:nth-child(5){animation-delay:.32s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+
+@media (min-width:768px){
+  .reviews{grid-template-columns:repeat(3,1fr)}
+  .foot{grid-template-columns:1.2fr 1fr 1.2fr}
+  .cta-stack{flex-direction:row;flex-wrap:wrap;max-width:none}
+  .why-grid{grid-template-columns:1fr 1.1fr;align-items:center}
+}
+@media (min-width:1024px){
+  body{padding-bottom:0}
+  .mbar{display:none}
+  .float{display:flex;position:fixed;right:24px;bottom:24px;z-index:90;align-items:center;gap:10px;background:var(--wa);color:#05210E;font-weight:800;padding:15px 22px;border-radius:999px;box-shadow:0 6px 0 #12853E,0 14px 30px rgba(0,0,0,.25)}
+  .float svg{width:26px;height:26px}
+  .hero-text{max-width:720px}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <span class="status" id="status"><span class="dot"></span><span id="statusTxt">Aberto todos os dias · 8h às 20h</span></span>
+    <span><b>(51) 99837-0221</b></span>
+  </div>
+</div>
+
+<header id="hdr">
+  <div class="wrap nav">
+    <a href="#topo" class="logo" aria-label="ARM Guinchos"><b>ARM</b>GUINCHOS</a>
+    <a class="btn btn-wa btn-sm wa-link" href="#" data-msg="Olá André! Preciso de um guincho.">Chamar no WhatsApp</a>
+  </div>
+</header>
+
+<main id="topo">
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-text">
+      <h1 class="fade"><span class="l1">Carro parou?</span><br><em>Chama o André.</em></h1>
+      <p class="lead fade">Guincho em Porto Alegre, Zona Sul. Toque no botão, mande sua localização e o caminhão vai até você. <!-- PERSONALIZAR: confirmar áreas atendidas (bairros, cidades, rodovias) --></p>
+      <div class="cta-stack fade">
+        <a class="btn btn-wa btn-big pulse wa-link" href="#" data-msg="Olá André! Preciso de um guincho agora.">
+          <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16.03 3C9.4 3 4.02 8.37 4.02 15c0 2.12.55 4.18 1.6 6L4 29l8.2-1.58A12 12 0 0 0 16.03 27C22.66 27 28.04 21.63 28.04 15S22.66 3 16.03 3zm5.44 14.5c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.47-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.23 1.36.2 1.87.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35z"/></svg>
+          Chamar guincho no WhatsApp
+        </a>
+        <button class="btn btn-dark" id="locBtn" type="button">📍 Enviar minha localização</button>
+      </div>
+      <p class="micro fade">Sem formulário e sem cadastro. A mensagem já vai pronta, é só enviar.</p>
+    </div>
+
+    <!-- Ilustração: cabine branca e plataforma amarela (estilo do cartão do cliente), carro cinza em cima -->
+    <div class="road" aria-hidden="true">
+      <svg viewBox="0 0 560 270" xmlns="http://www.w3.org/2000/svg">
+        <g class="truck">
+          <rect x="22" y="188" width="320" height="18" rx="3" fill="#0E0E0E"/>
+          <rect x="22" y="188" width="320" height="6" fill="#FFD100"/>
+          <g fill="#FFD100"><polygon points="40,206 60,206 48,194 28,194"/><polygon points="90,206 110,206 98,194 78,194"/><polygon points="140,206 160,206 148,194 128,194"/><polygon points="190,206 210,206 198,194 178,194"/><polygon points="240,206 260,206 248,194 228,194"/><polygon points="290,206 310,206 298,194 278,194"/></g>
+          <rect x="36" y="206" width="292" height="16" fill="#2A2A2A"/>
+          <!-- carro cinza em cima da plataforma -->
+          <path d="M66 188 L66 156 Q66 148 76 146 L124 142 L150 118 Q156 113 164 113 L232 113 Q242 113 248 120 L272 142 L306 146 Q318 148 318 158 L318 188 Z" fill="#8E9196" stroke="#0E0E0E" stroke-width="4"/>
+          <path d="M156 123 L230 123 L258 142 L134 144 Z" fill="#0E0E0E"/>
+          <line x1="194" y1="123" x2="194" y2="143" stroke="#8E9196" stroke-width="5"/>
+          <rect x="304" y="158" width="14" height="9" rx="2" fill="#FFD100"/><rect x="66" y="160" width="12" height="9" rx="2" fill="#FF5A4D"/>
+          <circle cx="112" cy="188" r="21" fill="#0E0E0E"/><circle cx="112" cy="188" r="9" fill="#9A978A"/>
+          <circle cx="274" cy="188" r="21" fill="#0E0E0E"/><circle cx="274" cy="188" r="9" fill="#9A978A"/>
+          <!-- cabine branca -->
+          <path d="M342 238 L342 156 Q342 146 352 144 L414 142 Q426 142 432 152 L476 204 Q484 212 484 224 L484 238 Z" fill="#F6F3EA" stroke="#0E0E0E" stroke-width="4"/>
+          <path d="M358 158 L412 156 L450 204 L358 204 Z" fill="#0E0E0E"/>
+          <rect x="474" y="212" width="14" height="10" rx="2" fill="#FFD100"/>
+          <rect x="342" y="226" width="142" height="12" fill="#FFD100"/>
+          <rect x="384" y="130" width="44" height="10" rx="3" fill="#0E0E0E"/>
+          <rect x="390" y="122" width="32" height="9" rx="3" fill="#FF5A4D"><animate attributeName="opacity" values="1;.2;1" dur=".9s" repeatCount="indefinite"/></rect>
+          <circle cx="84" cy="238" r="26" fill="#0E0E0E"/><circle cx="84" cy="238" r="12" fill="#FFD100"/>
+          <circle cx="146" cy="238" r="26" fill="#0E0E0E"/><circle cx="146" cy="238" r="12" fill="#FFD100"/>
+          <circle cx="412" cy="238" r="28" fill="#0E0E0E"/><circle cx="412" cy="238" r="13" fill="#FFD100"/>
+          <text x="186" y="219" font-family="Archivo Black,Arial Black,sans-serif" font-size="17" fill="#FFD100" letter-spacing="1">ARM GUINCHOS</text>
+        </g>
+      </svg>
+      <div class="asphalt"></div>
+    </div>
+  </div>
+</section>
+
+<!-- AVALIAÇÕES -->
+<section class="reviews-sec">
+  <div class="wrap">
+    <span class="kicker reveal">Quem já chamou recomenda</span>
+    <h2 class="reveal">O que dizem os clientes</h2>
+    <div class="rating-big reveal">
+      <div class="n">4,9</div>
+      <div><div class="stars">★★★★★</div><small>94 avaliações no Google</small></div>
+    </div>
+    <div class="reviews">
+      <div class="review reveal"><div class="stars">★★★★★</div><p>Chegou rápido na hora em que mais precisei e ainda deixou eu carregar o celular na cabine do caminhão. Obrigado, André.</p><small>Cliente · avaliação no Google (resumida)</small></div>
+      <div class="review reveal"><div class="stars">★★★★★</div><p>Atendimento rápido, serviço de qualidade e uma pessoa muito gente fina. O caminhão é ótimo.</p><small>Cliente · avaliação no Google (resumida)</small></div>
+      <div class="review reveal"><div class="stars">★★★★★</div><p>Serviço de qualidade, atendimento rápido e recomendo para quem precisar.</p><small>Cliente · avaliação no Google (resumida)</small></div>
+    </div>
+    <!-- PERSONALIZAR: trocar pelas avaliações reais copiadas do Google, com autorização, e incluir nome/foto se o cliente quiser -->
+  </div>
+</section>
+
+<!-- POR QUE O ARM -->
+<section class="why">
+  <div class="wrap why-grid">
+    <div>
+      <span class="kicker reveal">Por que o ARM Guinchos</span>
+      <h2 class="reveal">Você não fica na mão.</h2>
+      <div class="bignums reveal">
+        <div class="bn"><strong>4,9★</strong><span>nota no Google</span></div>
+        <div class="bn"><strong>94</strong><span>avaliações</span></div>
+        <div class="bn"><strong>8h-20h</strong><span>todos os dias</span></div>
+        <div class="bn"><strong>ZAP</strong><span>direto com o André</span></div>
+      </div>
+    </div>
+    <ul>
+      <li class="reveal"><i>✓</i><div>Atendimento rápido<span>É o elogio que mais aparece nas avaliações.</span></div></li>
+      <li class="reveal"><i>✓</i><div>Fala direto com o André<span>Sem central e sem robô, pelo WhatsApp.</span></div></li>
+      <li class="reveal"><i>✓</i><div>Todos os dias, das 8h às 20h<span>Domingo e feriado também, segundo o perfil no Google.</span></div></li>
+      <li class="reveal"><i>✓</i><div>Cuidado com o cliente<span>Teve gente que até carregou o celular na cabine do caminhão.</span></div></li>
+    </ul>
+    <!-- PERSONALIZAR: inserir aqui uma seção "Quem é o André" com foto real e uma frase dele, quando o cliente enviar -->
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section>
+  <div class="wrap">
+    <span class="kicker reveal">Simples e rápido</span>
+    <h2 class="reveal">Socorro em 3 passos</h2>
+    <div class="tl">
+      <div class="tl-item reveal"><h3>Toque no botão</h3><p>O WhatsApp abre com a mensagem pronta. Você não digita nada.</p></div>
+      <div class="tl-item reveal"><h3>Mande sua localização</h3><p>Um toque e o André vê exatamente onde você está.</p></div>
+      <div class="tl-item reveal"><h3>Combine o valor</h3><p>Você sabe quanto vai pagar antes de o caminhão sair. <!-- PERSONALIZAR: confirmar a forma de cobrança (por km, valor fixo, etc.) --></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- QUANDO CHAMAR + FAQ -->
+<section class="alt faq">
+  <div class="wrap">
+    <span class="kicker reveal">Quando chamar</span>
+    <h2 class="reveal">Parou? Pode chamar.</h2>
+    <div class="pills reveal">
+      <span class="pill">Carro que não pega</span>
+      <span class="pill">Pane no meio do caminho</span>
+      <span class="pill">Levar até a oficina</span>
+      <span class="pill">Remoção de veículo</span>
+    </div>
+    <!-- PERSONALIZAR: confirmar quais veículos atende (carro, moto, utilitário), se faz socorro no local e se atende fora do horário em emergência -->
+    <h2 class="reveal" style="margin-top:46px">Dúvidas rápidas</h2>
+    <details class="reveal"><summary>Que horas vocês atendem?</summary><p>Todos os dias, das 8h às 20h, segundo o perfil no Google. <!-- PERSONALIZAR: informar se existe atendimento de emergência à noite --></p></details>
+    <details class="reveal"><summary>Como eu sei o valor?</summary><p>Você manda sua localização e o destino pelo WhatsApp e o valor é combinado antes do serviço. <!-- PERSONALIZAR: informar se existe valor mínimo ou tabela por km --></p></details>
+    <details class="reveal"><summary>Quais formas de pagamento?</summary><p><!-- PERSONALIZAR: PIX, dinheiro, cartão? Confirmar com o cliente --> Combine direto pelo WhatsApp.</p></details>
+    <details class="reveal"><summary>Atende em qual região?</summary><p>Porto Alegre, com base na Zona Sul. Mande sua localização que o André confirma. <!-- PERSONALIZAR: listar bairros e cidades atendidas --></p></details>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="final">
+  <div class="wrap">
+    <h2 class="reveal">Não deixe pra depois.</h2>
+    <p class="big reveal">Chame agora. A resposta vem direto no WhatsApp.</p>
+    <div class="cta-stack reveal">
+      <a class="btn btn-wa btn-big wa-link" href="#" data-msg="Olá André! Preciso de um guincho agora.">Chamar guincho agora</a>
+      <button class="btn btn-big loc-copy" type="button" style="background:var(--yellow);color:var(--ink);box-shadow:0 8px 0 #B89600">📍 Enviar minha localização</button>
+    </div>
+    <p class="micro reveal"><b>(51) 99837-0221</b> · Todos os dias, 8h às 20h</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div><h4>ARM Guinchos</h4>Guincho e remoção de veículos em Porto Alegre, Zona Sul.</div>
+    <div><h4>Contato</h4><a href="tel:+5551998370221">(51) 99837-0221</a><br>WhatsApp: <a class="wa-link" href="#" data-msg="Olá André! Preciso de um guincho.">chamar agora</a></div>
+    <div><h4>Onde estamos</h4>R. Cirino Prunes, 202 · Espírito Santo<br>Porto Alegre – RS · 91770-210<br><a href="https://www.google.com/maps/place/?q=place_id:ChIJt9tsDGGDGZURtOkL03IeB_0" target="_blank" rel="noopener">Ver no Google Maps</a></div>
+    <!-- PERSONALIZAR: adicionar CNPJ, Instagram, logo oficial e fotos reais do caminhão -->
+  </div>
+  <div class="wrap copy">© ARM Guinchos · Todos os dias, 8h às 20h</div>
+</footer>
+
+<div class="mbar">
+  <a class="btn btn-wa wa-link" href="#" data-msg="Olá André! Preciso de um guincho agora.">
+    <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true" width="22" height="22"><path d="M16.03 3C9.4 3 4.02 8.37 4.02 15c0 2.12.55 4.18 1.6 6L4 29l8.2-1.58A12 12 0 0 0 16.03 27C22.66 27 28.04 21.63 28.04 15S22.66 3 16.03 3zm5.44 14.5c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.47-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.23 1.36.2 1.87.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35z"/></svg>
+    Chamar no WhatsApp
+  </a>
+  <a class="btn call" href="tel:+5551998370221" aria-label="Ligar">📞</a>
+</div>
+<a class="float wa-link" href="#" data-msg="Olá André! Preciso de um guincho agora.">
+  <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16.03 3C9.4 3 4.02 8.37 4.02 15c0 2.12.55 4.18 1.6 6L4 29l8.2-1.58A12 12 0 0 0 16.03 27C22.66 27 28.04 21.63 28.04 15S22.66 3 16.03 3zm5.44 14.5c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.47-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.23 1.36.2 1.87.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35z"/></svg>
+  Chamar no WhatsApp
+</a>
+
+<script>
+  // PERSONALIZAR: número do WhatsApp do cliente (DDI 55 + DDD + número, só dígitos)
+  var WA_NUMBER = "5551998370221";
+
+  function waUrl(msg){ return "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(msg); }
+
+  document.querySelectorAll(".wa-link").forEach(function(a){
+    a.href = waUrl(a.getAttribute("data-msg") || "Olá André! Preciso de um guincho.");
+    a.target = "_blank"; a.rel = "noopener";
+  });
+
+  // Aberto/fechado agora, no horário de Brasília (ficha do Maps: 8h às 20h, todos os dias)
+  (function(){
+    var box = document.getElementById("status"), txt = document.getElementById("statusTxt");
+    try{
+      var h = parseInt(new Intl.DateTimeFormat("pt-BR",{hour:"numeric",hour12:false,timeZone:"America/Sao_Paulo"}).format(new Date()),10);
+      if(h >= 8 && h < 20){ txt.textContent = "Aberto agora · até 20h"; }
+      else { box.classList.add("closed"); txt.textContent = "Fechado agora · abre às 8h. Mande mensagem mesmo assim"; }
+    }catch(e){ /* mantém o texto padrão */ }
+  })();
+
+  // Localização do cliente na mensagem (só quando ele toca no botão). Vale para os dois botões.
+  function sendLocation(btn){
+    var original = btn.textContent;
+    var fallback = function(){ window.location.href = waUrl("Olá André! Preciso de um guincho agora. Vou te mandar minha localização por aqui."); };
+    if(!navigator.geolocation){ fallback(); return; }
+    btn.textContent = "Buscando sua localização…";
+    navigator.geolocation.getCurrentPosition(function(p){
+      var link = "https://www.google.com/maps?q=" + p.coords.latitude + "," + p.coords.longitude;
+      window.location.href = waUrl("Olá André! Preciso de um guincho agora. Minha localização: " + link);
+    }, function(){
+      btn.textContent = original; fallback();
+    }, {enableHighAccuracy:true, timeout:8000, maximumAge:60000});
+  }
+  document.getElementById("locBtn").addEventListener("click", function(){ sendLocation(this); });
+  document.querySelector(".loc-copy").addEventListener("click", function(){ sendLocation(this); });
+
+  var hdr = document.getElementById("hdr");
+  window.addEventListener("scroll", function(){ hdr.classList.toggle("scrolled", window.scrollY > 10); }, {passive:true});
+
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+  }, {threshold:.12});
+  document.querySelectorAll(".reveal").forEach(function(el){ io.observe(el); });
+</script>
+</body>
+</html>
